@@ -35,7 +35,7 @@ version: '3.8'
 services:
   arcxpu:
     build:
-      context: 
+      context: https://github.com/Sikerdebaard/whisper-asr-webservice-xpu.git
       dockerfile: Dockerfile.arc-xpu
     image: arcxpu:latest
     ports:
