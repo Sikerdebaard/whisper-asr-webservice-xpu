@@ -5,7 +5,7 @@ The repository provides a customized Whisper ASR web service that has been adapt
 ## Components Utilized
 The service employs several resources:
 - It is constructed from Intel's [Dockerfile](https://github.com/intel/intel-extension-for-pytorch/tree/v2.0.110%2Bxpu/docker), it is modified for Intel ARC and Whisper's needs.
-- It incorporates a [patched version of OpenAI Whisper](https://github.com/openai/whisper/pull/1362) provided by @leuc, enabling it to run on Intel ARC / XPU systems.
+- It incorporates a [patched version of OpenAI Whisper](https://github.com/openai/whisper/pull/1362) provided by [@leuc](https://github.com/leuc), enabling it to run on Intel ARC / XPU systems.
 - The base [ahmetoner/whisper-asr-webservice](https://github.com/ahmetoner/whisper-asr-webservice) is integrated and patched to be compatible with XPU during the Docker image build.
 
 The Docker image is tested on Ubuntu with kernel version `6.2.0-34-generic #34~22.04.1`.
