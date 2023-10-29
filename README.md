@@ -11,7 +11,7 @@ The service employs several resources:
 The Docker image is tested on Ubuntu with kernel version `6.2.0-34-generic #34~22.04.1`.
 
 ## Building and Running Using Docker
-Ensure you have at least 25 GiB of disk space for the required dependencies.
+Ensure you have at least 25 GiB of disk space for the required dependencies. Remember to navigate to the directory containing a checkout of this repository before executing the docker build command.
 
 ### Docker Commands
 ```bash
@@ -28,7 +28,7 @@ $ docker run --device /dev/dri:/dev/dri -e ASR_MODEL=large -e ASR_ENGINE=openai_
 For convenience, `docker-compose.yml` is provided to simplify the build and run process.
 
 ### Docker Compose File
-Here's an example of a `docker-compose.yml` for this service:
+Here's an example of a `docker-compose.yml` for this service. It is crucial to specify the openai_whisper engine to activate ARC / XPU acceleration.
 
 ```yaml
 version: '3.8'
