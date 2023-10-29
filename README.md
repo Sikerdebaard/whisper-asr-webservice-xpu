@@ -1,6 +1,6 @@
 # Whisper ASR Web Service for Intel ARC / XPU
 
-The repository provides a customized Whisper ASR web service that has been adapted to run on Intel ARC / XPU, enhancing the original [ahmetoner/whisper-asr-webservice](https://github.com/ahmetoner/whisper-asr-webservice). This service is designed to utilize the computational power of Intel's hardware for improved performance.
+This repository provides a customized Whisper ASR web service that has been adapted to run on Intel ARC / XPU, enhancing the original [ahmetoner/whisper-asr-webservice](https://github.com/ahmetoner/whisper-asr-webservice). This service is designed to utilize the computational power of Intel's ARC / XPU hardware for improved performance.
 
 ## Components Utilized
 The service employs several resources:
