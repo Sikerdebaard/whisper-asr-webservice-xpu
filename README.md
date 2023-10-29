@@ -58,3 +58,6 @@ docker-compose up -d
 ```
 
 With Docker Compose, the service will be accessible on port 9000 of the host machine. Remember to navigate to the directory containing your `docker-compose.yml` file before executing the Docker Compose commands.
+
+## Further documentation
+For further documentation and details on the original Whisper ASR Web Service, please refer to the official documentation at https://ahmetoner.com/whisper-asr-webservice/.
