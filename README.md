@@ -1,6 +1,6 @@
 # Whisper ASR Web Service for Intel ARC / XPU
 
-The repository provides a customized Whisper ASR web service that has been adapted to run on Intel ARC / XPU, enhancing the original [ahmetoner/whisper-asr-webservice](https://github.com/ahmetoner/whisper-asr-webservice). This service is designed to utilize the computational power of Intel's hardware for improved performance.
+This repository provides a customized Whisper ASR web service that has been adapted to run on Intel ARC / XPU, enhancing the original [ahmetoner/whisper-asr-webservice](https://github.com/ahmetoner/whisper-asr-webservice). This service is designed to utilize the computational power of Intel's ARC / XPU hardware for improved performance.
 
 ## Components Utilized
 The service employs several resources:
@@ -11,7 +11,7 @@ The service employs several resources:
 The Docker image is tested on Ubuntu with kernel version `6.2.0-34-generic #34~22.04.1`.
 
 ## Building and Running Using Docker
-Ensure you have at least 25 GiB of disk space for the required dependencies.
+Ensure you have at least 25 GiB of disk space for the required dependencies. Remember to navigate to the directory containing a checkout of this repository before executing the docker build command.
 
 ### Docker Commands
 ```bash
@@ -28,14 +28,14 @@ $ docker run --device /dev/dri:/dev/dri -e ASR_MODEL=large -e ASR_ENGINE=openai_
 For convenience, `docker-compose.yml` is provided to simplify the build and run process.
 
 ### Docker Compose File
-Here's an example of a `docker-compose.yml` for this service:
+Here's an example of a `docker-compose.yml` for this service. It is crucial to specify the openai_whisper engine to activate ARC / XPU acceleration.
 
 ```yaml
 version: '3.8'
 services:
   arcxpu:
     build:
-      context: 
+      context: https://github.com/Sikerdebaard/whisper-asr-webservice-xpu.git
       dockerfile: Dockerfile.arc-xpu
     image: arcxpu:latest
     ports:
@@ -57,26 +57,7 @@ docker-compose build
 docker-compose up -d
 ```
 
-With Docker Compose, the service will be accessible on port 9000 of the host machine. Remember to navigate to the directory containing your `docker-compose.yml` file before executing the Docker Compose commands.
+With Docker Compose, the service will be accessible on port 9000 of the host machine.
 
-# whisper-asr-webservice-xpu
-This repo runs a modified version of [ahmetoner/whisper-asr-webservice](https://github.com/ahmetoner/whisper-asr-webservice) so that it runs Whisper on Intel ARC / XPU.
-
-The image uses the following resources:
-* It is based on the original Intel [Dockerfile](https://github.com/intel/intel-extension-for-pytorch/tree/v2.0.110%2Bxpu/docker)
-* It uses a [patched version of OpenAI Whisper](https://github.com/openai/whisper/pull/1362) by @leuc that runs on ARC / XPU.
-* The original [ahmetoner/whisper-asr-webservice](https://github.com/ahmetoner/whisper-asr-webservice) is pulled in and patched for XPU during image build.
-
-Currently the image is only tested on kernel `6.2.0-34-generic #34~22.04.1-Ubuntu`.
-
-## Building and running the image
-Make sure you have enough diskspace available: the image pulls in approximately 25 GiB of dependencies.
-
-```bash
-# build the image
-$ docker build -t arcxpu -f ./Dockerfile.arc-xpu .
-
-# run the image
-# you MUST use the openai_whisper engine for ARC / XPU acceleration to work
-$ docker run --device /dev/dri:/dev/dri -e ASR_MODEL=large -e ASR_ENGINE=openai_whisper -p 9000:9000 --name arcxpu arcxpu:latest
-```
+## Further documentation
+For further documentation and details on the original Whisper ASR Web Service, please refer to the official documentation at https://ahmetoner.com/whisper-asr-webservice/.
