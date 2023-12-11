@@ -110,7 +110,7 @@ RUN if [ ${ONECCL_BIND_PT_VERSION} != "N/A" ] && [ ${ONECCL_BIND_PT_WHL_URL} != 
         python -m pip install oneccl_bind_pt==${ONECCL_BIND_PT_VERSION} -f ${ONECCL_BIND_PT_WHL_URL}; \
     fi
 
-ENV LD_LIBRARY_PATH=/opt/intel/oneapi/lib:/opt/intel/oneapi/lib/intel64:$LD_LIBRARY_PATH
+ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/intel/oneapi/tbb/2021.11/env/../lib/intel64/gcc4.8:/opt/intel/oneapi/mpi/2021.11/opt/mpi/libfabric/lib:/opt/intel/oneapi/mpi/2021.11/lib:/opt/intel/oneapi/mkl/2024.0/lib:/opt/intel/oneapi/ippcp/2021.9/lib/:/opt/intel/oneapi/ipp/2021.10/lib:/opt/intel/oneapi/dpl/2022.3/lib:/opt/intel/oneapi/dnnl/2024.0/lib:/opt/intel/oneapi/debugger/2024.0/opt/debugger/lib:/opt/intel/oneapi/dal/2024.0/lib:/opt/intel/oneapi/compiler/2024.0/opt/oclfpga/host/linux64/lib:/opt/intel/oneapi/compiler/2024.0/opt/compiler/lib:/opt/intel/oneapi/compiler/2024.0/lib:/opt/intel/oneapi/ccl/2021.11/lib/:/opt/intel/oneapi/lib:/opt/intel/oneapi/lib/intel64::/opt/intel/oneapi/mkl/latest/lib/intel64:/opt/intel/oneapi/compiler/latest/linux/compiler/lib/intel64_lin:/opt/intel/oneapi/compiler/latest/linux/lib
 ENV ONEAPI_ROOT=/opt/intel/oneapi
 ENV DPCPPROOT=${ONEAPI_ROOT}/compiler/latest
 ENV MKLROOT=${ONEAPI_ROOT}/mkl/latest
@@ -136,7 +136,5 @@ RUN pip install poetry==1.6.1 setuptools wheel && \
 	poetry lock && poetry install --no-interaction && \
 	apt-get clean && \
 	rm -rf  /var/lib/apt/lists/*
-
-ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/intel/oneapi/mkl/latest/lib/intel64:/opt/intel/oneapi/compiler/latest/linux/compiler/lib/intel64_lin:/opt/intel/oneapi/compiler/latest/linux/lib
 
 ENTRYPOINT ["gunicorn", "--bind", "0.0.0.0:9000", "--workers", "1", "--timeout", "0", "app.webservice:app", "-k", "uvicorn.workers.UvicornWorker"]
