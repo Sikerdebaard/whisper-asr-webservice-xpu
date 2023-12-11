@@ -66,7 +66,7 @@ RUN no_proxy=$no_proxy wget -O- https://apt.repos.intel.com/intel-gpg-keys/GPG-P
 
 RUN apt update && \
     apt install -y --no-install-recommends --fix-missing \
-    intel-basekit-2023.2.0* \
+    intel-basekit \
     intel-oneapi-runtime-dpcpp-cpp=2023.2.2-47 \
     intel-oneapi-runtime-mkl=2023.2.0-49495 \
     intel-oneapi-runtime-ccl
