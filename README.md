@@ -8,10 +8,10 @@ The service employs several resources:
 - It incorporates a [patched version of OpenAI Whisper](https://github.com/openai/whisper/pull/1362) provided by [@leuc](https://github.com/leuc), enabling it to run on Intel ARC / XPU systems.
 - The base [ahmetoner/whisper-asr-webservice](https://github.com/ahmetoner/whisper-asr-webservice) is integrated and patched to be compatible with XPU during the Docker image build.
 
-The Docker image is tested on Ubuntu with kernel version `6.2.0-34-generic #34~22.04.1`.
+The Docker image is tested on Ubuntu with kernel version `6.2.0-34-generic #34~22.04.1` and Fedora with kernel version `6.6.13-100.fc38.x86_64`.
 
 ## Building and Running Using Docker
-Ensure you have at least 25 GiB of disk space for the required dependencies. Remember to navigate to the directory containing a checkout of this repository before executing the docker build command.
+Remember to navigate to the directory containing a checkout of this repository before executing the docker build command.
 
 ### Docker Commands
 ```bash
